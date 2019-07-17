@@ -10,20 +10,4 @@
     Thing
 </body>
 </html>
-<script>
-var Request = require("request");
 
-Request.post({
-    "headers": { "content-type": "application/json" },
-    "url": "https://gsiedge.com/api/login",
-    "body": JSON.stringify({
-        "username": "siouxcity_api",
-        "password": "siouxcity"
-    })
-}, (error, response, body) => {
-    if(error) {
-        return console.dir(error);
-    }
-    console.dir(JSON.parse(body));
-});
-</script>
