@@ -10,4 +10,55 @@
     Thing
 </body>
 </html>
+<script>
+var Request = require("request")
+Request.post({
+    "headers": { "content-type": "application/json" },
+    "url": "https://gsiedge.com/api/login",
+    "body": JSON.stringify({
+        "username": "siouxcity_api",
+        "password": "siouxcity"
+    })
+}, (error, response, body) => {
+    if(error) {
+        return console.dir(error);
+    }
+    console.dir(body);
+});
+
+var Request = require("request");
+Request.post({
+    "headers": {
+"content-type": "application/json",
+"Authorization": "Bearer 3adc4dafec817a923990fda6298e8bca1adbc8b515625fef80a29da7383e7b9a"
+ },
+    "url": "https://api.gsiedge.com/graphql",
+    "body": JSON.stringify({
+        query: `{
+    controllers {
+      device_name
+      device_serial_number
+      rooms {
+        room_name
+        x_device_id
+        room_event_types
+        equipment {
+          x_device_id
+          equipment_name
+          equipment_type
+          equipment_event_types
+        }
+      }
+    }
+  }`
+
+    })
+}, (error, response, body) => {
+    if(error) {
+        return console.dir(error);
+    }
+    console.dir(body);
+});
+</script>
+    
 
