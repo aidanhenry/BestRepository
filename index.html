@@ -122,7 +122,7 @@
                 // THIS IS TO HANDLE ?'s BECAUSE CURRENTLY CERTAIN KEYS GIVE WEIRD CHARACTERS
                 // THIS IS A BUG THAT WE SHOULD DEAL WITH EVENTUALLY BUT IS FINE FOR NOW
                 if (x.keyCode === keyMap.backslash) {
-                    inputChar = "?";
+                    inputChar = "/";
                 }
                 // THIS IS NORMAL KEYBOARD INPUT
                 else {
@@ -152,7 +152,7 @@
         // THEY ALL HAVE A NAME "GameOver", "name", "Bed", etc
         // THEN THEY ALL HAVE SOME KIND OF LOGIC TO HANDLE THAT SITUATION
         // MOST WILL HAVE A "question" and "action"
-        scene = {
+         = {
             GameOver: {
                 question: "YOU LOSE!",
                 action: "Type \"try again\" to start over",
