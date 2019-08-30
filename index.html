@@ -20,7 +20,7 @@
             font-size: 1.5em;
         }
         #caret {
-            color: lime;
+            color: white;
             display: inline-block;
         }
         #dolla {
@@ -64,9 +64,13 @@
 <body>
     
     <div class="consoleContainer">
-        <div id="historyContainer">
+        <div id="titleContainer">
             <br>
             aidan's web terminal<br><br>
+        </div>
+        <div id="historyContainer">
+            <br>
+            enter password<br><br>
         </div>
         <div id="dolla">$</div><div id="userInput"></div><div id="caret"></div>
     </div>
@@ -161,51 +165,42 @@
                         case "TRY AGAIN":
                             level = "name";
                             
-                            nextQuestion();
+                            endCommand();
                             break
                         default:
-                            nextQuestion();
+                            endCommand();
                     }
                 }
             },
             
             
             name: {
-                question: "What is your name?",
+                question: "no. enter password",
                 action: "",
                 logic: function() {
-                    if (userInput.toUpperCase() === "AIDAN") {
-                        respond("You are immediately crippled. You fall on the floor, crying, lacking the will to go on, praying that it would all end now, when suddenly a troll comes and beats you up. you lay there clearly beaten. And the troll steals your glasses too.<br><br> The End!<br><br>");
-                        level = "GameOver";
-                    }
-                    if (userInput.toUpperCase() === "YOUR MOM") {
-                        respond("Get Out. You are not welcome here.<br><br>");
-                        
-                        level = "GameOver";
-                    }
-                    if(userInput.toUpperCase() !== "AIDAN" && userInput.toUpperCase() !== "YOUR MOM"){
+                    if (userInput.toUpperCase() === "GoodPassword") {
+                        respond("that's right. press something to continue");
                         level = "Start";
-                        playerName = userInput;
-// 							scene.onBed.question = "What are you doing " + playerName + "? You want to escape. There's no time to rest! Get up!";
-// 							scene.DoorLock.question = "Well, it shouldn't be too hard to breakout now. All you have to do is punch in the combination that the guard just punched in. Simple!\n\n Wait. . . what's that " + playerName + "? You didn't look to see the combination? Why, that's basic prison breakout 101! I mean, you can't just expect them to let you out! Hmm. Well maybe if you just type in your favorite 6-digit number it will work."
-                        nextQuestion();
+                    }
+                    else {
+                        level = "name";
                     }
                 }
             },
             
             
             Start: {
-                question: "You are in a high level security prison, being held for a crime you didn't commit. However, tonight you hear that one of your fellow inmates is having a birthday party and that there will be cake. You immediately want to escape.",
-                action: "Type b to go to your bed or d to go to your door.",
+                question: "do the thing that you want to do now",
+                action: "",
                 logic: function() {
                     switch (userInput.toUpperCase()) {
                         case "B":
                             level = "Bed";
-                            nextQuestion();
+                            endCommand();
                             break;
                         case "D":
                             level = "Door";
-                            nextQuestion();
+                            endCommand();
                             break;
                         default:
                             defaultResponse();
@@ -221,11 +216,11 @@
                     switch (userInput.toUpperCase()) {
                         case "S":
                             level = "onBed";
-                            nextQuestion();
+                            endCommand();
                             break;
                         case "B":
                             level = "Start";
-                            nextQuestion();
+                            endCommand();
                             break;
                         default:
                             defaultResponse();
@@ -241,11 +236,11 @@
                     switch (userInput.toUpperCase()) {
                         case "S":
                             level = "stillOnBed";
-                            nextQuestion();
+                            endCommand();
                             break;
                         case "B":
                             level = "Start";
-                            nextQuestion();
+                            endCommand();
                             break;
                         default:
                             defaultResponse();
@@ -277,11 +272,11 @@
                     switch (userInput.toUpperCase()) {
                         case "R":
                             level = "DoorLock";
-                            nextQuestion();
+                            endCommand();
                             break;
                         case "B":
                             level = "Start";
-                            nextQuestion();
+                            endCommand();
                             break;
                         default:
                             defaultResponse();
@@ -298,16 +293,16 @@
                         default:
                             if (userInput.length != 6 && isNaN(userInput) === false ) {
                                 level = "DoorOpen2";
-                                nextQuestion();
+                                endCommand();
                             } else if (isNaN(userInput) && userInput.length === 6) {
                                 level = "DoorOpen3";
-                                nextQuestion();
+                                endCommand();
                             } else if(userInput.length != 6 && isNaN(userInput)) {
                                 respond("What was THAT? You didn't put in 6 digits OR use a number! I mean, some KINDERGARTENERS may make one mistake or the other, yet you made BOTH. I'm sorry I can't. I just can't. Please come back when you learn how to type basic numbers.")
                                 level = "GameOver";
                             } else {
                             level = "DoorOpen";
-                            nextQuestion();
+                            endCommand();
                             }
                     }
                 }
@@ -319,11 +314,11 @@
                     switch (userInput.toUpperCase()) {
                         case "H":
                             level = "HiddingSpot";
-                            nextQuestion();
+                            endCommand();
                             break;
                         case "S":
                             level = "Stay";
-                            nextQuestion();
+                            endCommand();
                             break;
                         default:
                             defaultResponse();
@@ -337,11 +332,11 @@
                     switch (userInput.toUpperCase()) {
                         case "H":
                             level = "HiddingSpot2";
-                            nextQuestion();
+                            endCommand();
                             break;
                         case "S":
                             level = "Stay";
-                            nextQuestion();
+                            endCommand();
                             break;
                         default:
                             defaultResponse();
@@ -355,11 +350,11 @@
                     switch (userInput.toUpperCase()) {
                         case "H":
                             level = "HiddingSpot2";
-                            nextQuestion();
+                            endCommand();
                             break;
                         case "S":
                             level = "Stay";
-                            nextQuestion();
+                            endCommand();
                             break;
                         default:
                             defaultResponse();
@@ -373,7 +368,7 @@
                     switch (userInput.toUpperCase()) {
                         default:
                             level = "Start"
-                            nextQuestion();
+                            endCommand();
                     }
                 }
             },
@@ -384,15 +379,15 @@
                     switch (userInput.toUpperCase()) {
                         case "L":
                             level = "Left";
-                            nextQuestion();
+                            endCommand();
                             break;
                         case "S":
                             level = "Straight";
-                            nextQuestion();
+                            endCommand();
                             break;
                         case "R":
                             level = "Right";
-                            nextQuestion();
+                            endCommand();
                             break;
                         default:
                             defaultResponse();
@@ -406,15 +401,15 @@
                     switch (userInput.toUpperCase()) {
                         case "L":
                             level = "Left";
-                            nextQuestion();
+                            endCommand();
                             break;
                         case "S":
                             level = "Straight";
-                            nextQuestion();
+                            endCommand();
                             break;
                         case "R":
                             level = "Right";
-                            nextQuestion();
+                            endCommand();
                             break;
                         default:
                             defaultResponse();
@@ -428,7 +423,7 @@
                     switch (userInput.toUpperCase()) {
                         case "S":
                             level = "Stay";
-                            nextQuestion();
+                            endCommand();
                             break;
                         case "R":
                             respond("You sprint down the hallway knowing that, much like the little gingerbread man, no one will be able to catch you. Sadly, they don't need to! The guards panic and gun you down, shattering all of your hopes and the bones in your leg. You end up in the hospital after your brief moment of freedom where they tell you that, not only did you break your leg, but you also broke your cake-digesting bone. Of course they're probably just making this up to keep you from trying to escape again, but you completely belive them and never eat cake again.<br> <br> The End!");
@@ -449,15 +444,15 @@
                             break;
                         case "L":
                             level = "";
-                            nextQuestion();
+                            endCommand();
                             break;
                         case "C":
                             level = "Right";
-                            nextQuestion();
+                            endCommand();
                         case "E":
                             respond("You're just about to eat the cake when all of the sudden, your window crashes because of an infinite for loop that the game programer inconveniently started.<br><br>The End!")
                             level = "YouGonnaDie";
-                            nextQuestion();
+                            endCommand();
                             break;
                         default:
                             defaultResponse();
@@ -474,11 +469,11 @@
                             break;
                         case "L":
                             level = "leaveBox";
-                            nextQuestion();
+                            endCommand();
                             break;
                         case "C":
                             level = "crawl";
-                            nextQuestion();
+                            endCommand();
                             break;
                         default:
                             defaultResponse();
@@ -528,7 +523,7 @@
             $('#historyContainer').html(response);
         }
         
-        function nextQuestion() {
+        function endCommand() {
             var question = "", action = "";
 
             if (scene[level].question) {
