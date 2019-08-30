@@ -179,11 +179,12 @@
                 action: "",
                 logic: function() {
                     if (userInput.toUpperCase() === "GOODPASSWORD") {
-                        respond("that's right. press something to continue");
                         level = "Start";
+                        endCommand();
                     }
                     else {
                         level = "name";
+                        endCommand();
                     }
                 }
             },
